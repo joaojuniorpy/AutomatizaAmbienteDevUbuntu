@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo su &&
 ## Removendo travas eventuais do apt ##
 
 sudo rm /var/lib/dpkg/lock-frontend ; sudo rm /var/cache/apt/archives/lock ;
@@ -16,12 +17,13 @@ sudo apt install build-essential default-jdk libssl-dev exuberant-ctags ncurses-
 ## Instalando o DB's ##
 sudo apt install postgresql-11 postgresql-contrib postgresql-server-dev-11 redis-server libhiredis-dev memcached libmemcached-dev -y &&
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4 &&
-sudo apt-get install -y mongodb-org -y &&
+sudo apt-get install -y mongodb -y &&
 sudo systemctl status mongodb  &&
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - &&
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" &&  sudo apt install docker-ce &&
 sudo usermod -aG docker ${USER} &&
 su - ${USER} &&
+exit &&
 
 ## Instalando pacotes Snap ##
 
